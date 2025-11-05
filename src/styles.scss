@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --fundo-destaque: #000;
+  --fundo: #fffaf4;
+  --texto-principal: #2c2c2c;
+  --cor-destaque: #ff6f00;
+  --link-button: #e65100;
+  --borda-icones: #444444;
+  --hover: #e64a19;
+  --error-color: #e22;
+  --success-color: #01441d;
+  --atention-color: #ff8f00;
+}
+
+body {
+  background-color: var(--fundo);
+  color: var(--texto-principal);
+  font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
