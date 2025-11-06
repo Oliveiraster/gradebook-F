@@ -16,9 +16,10 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="button" aria-label="Buscar alunos e notas" (click)="onSearch()">
-      Buscar
-    </button>
+    <button mat-raised-button color="primary" type="button" (click)="onSearch()">Buscar</button>
+  </div>
+  <div class="actions">
+    <button mat-raised-button color="accent" type="button" (click)="openAddStudentDialog()">+ Adicionar Aluno</button>
   </div>
 
   <div *ngIf="students.length && assessments.length" [formGroup]="form" class="table-container">
@@ -26,11 +27,9 @@
       <thead>
         <tr>
           <th>Aluno</th>
-          <th *ngFor="let a of assessments">
-            {{ a.name }}
-            <small>({{ a.weight }})</small>
-          </th>
+          <th *ngFor="let a of assessments">{{ a.title }}({{ a.weight }})</th>
           <th>Média</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -43,15 +42,27 @@
               max="10"
               step="0.1"
               [formControlName]="getControlName(s.id, a.id)"
-              [attr.title]="'Nota de ' + s.name + ' em ' + a.name"
               placeholder="0–10"
-              [attr.aria-label]="'Nota do aluno ' + s.name + ' em ' + a.name" />
+              (input)="limitScore($event, s.id, a.id)"
+            />
           </td>
+
           <td>{{ midMap[s.id] }}</td>
+          <td class="actions-cell">
+            <button mat-icon-button color="warn" type="button" (click)="editStudent(s)">
+              <mat-icon class="edit">edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" type="button" (click)="deleteStudent(s.id)">
+              <mat-icon class="delete">delete</mat-icon>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
 
-    <button mat-raised-button color="accent" type="button" (click)="save()">Salvar Lançamentos</button>
+    <div class="actions">
+      <button mat-raised-button color="primary" type="button" (click)="save()">Salvar Lançamentos</button>
+    </div>
   </div>
 </div>
