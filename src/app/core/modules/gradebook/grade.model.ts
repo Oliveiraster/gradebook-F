@@ -1,5 +1,5 @@
 export interface Grade {
   studentId: number;
-  AssessmentId: number;
+  assessmentId: number;
   score: number | null;
 }

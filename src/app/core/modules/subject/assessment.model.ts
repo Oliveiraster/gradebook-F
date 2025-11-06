@@ -1,5 +1,5 @@
 export interface Assessment {
   id: number;
-  name: string;
+  title: string;
   weight: number;
 }
