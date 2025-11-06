@@ -1,59 +1,100 @@
-# GradebookF
+📊 Sistema de Gerenciamento de Notas (Gradebook)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+Este projeto é uma aplicação Single Page Application (SPA) desenvolvida em Angular, focada na gestão e lançamento de notas de alunos por turma e disciplina.
 
-## Development server
+A arquitetura interna segue rigorosos princípios de design para garantir modularidade, escalabilidade e fácil manutenção.
 
-To start a local development server, run:
+🚀 Tecnologias Utilizadas
 
-```bash
+Framework: Angular (Standalone Components)
+
+Linguagem: TypeScript
+
+Gerenciamento de Estado/Dados: RxJS (Observables)
+
+UI/Design: Angular Material (com Tailwind CSS como base para o layout, se aplicável)
+
+🏗️ Arquitetura do Projeto
+
+O projeto adota o princípio de Domain-Driven Design (DDD) e Princípio da Responsabilidade Única (SRP), especialmente na camada de serviços (core).
+
+Estrutura da Pasta core/
+
+A pasta core foi dividida em domínios específicos, isolando a lógica, modelos e serviços de cada entidade.
+
+Domínio
+
+Caminho
+
+Responsabilidade
+
+Infraestrutura
+
+core/api.service.ts
+
+Única camada de comunicação HTTP (Mockada), utilizada por todos os serviços de domínio.
+
+Classes
+
+core/class/
+
+Gerenciamento de Turmas (SchoolClass).
+
+Disciplinas
+
+core/subject/
+
+Gerenciamento de Disciplinas (Subject) e Avaliações (Assessment).
+
+Alunos
+
+core/student/
+
+Operações CRUD (Criação, Edição, Deleção) de Alunos.
+
+Boletim
+
+core/gradebook/
+
+Lógica de processamento e salvamento dos lançamentos de notas (GradebookEntry).
+
+Componentes
+
+O componente principal, GradebookComponent, atua como um Container que:
+
+Injeta os serviços de domínio (ex: ClassService, StudentService).
+
+Gerencia o formulário reativo (filterForm e form de notas).
+
+Coordena as ações do usuário (filtrar, salvar, adicionar aluno).
+
+🧩 Serviços de Domínio (SRP)
+
+O uso de múltiplos serviços no lugar de um único ApiService monolítico garante que cada serviço tenha apenas uma razão para mudar (SRP):
+
+ClassService: Busca a lista de turmas.
+
+SubjectService: Busca a lista de disciplinas e avaliações.
+
+StudentService: Lida com a criação, atualização e deleção de alunos.
+
+GradebookService: Lida com a busca dos dados de notas e o salvamento dos lançamentos.
+
+⚙️ Instalação e Execução
+
+Para rodar este projeto localmente, siga os passos abaixo:
+
+Clone o repositório:
+
+git clone [Repository](https://github.com/Oliveiraster/gradebook-F.git)
+cd gradebook-f
+
+Instale as dependências:
+
+npm install
+
+Execute o servidor de desenvolvimento:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Navegue para http://localhost:4200/. A aplicação recarregará automaticamente se você fizer alterações nos arquivos fonte.
