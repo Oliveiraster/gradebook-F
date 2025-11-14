@@ -11,6 +11,8 @@ export class ClassService {
   private readonly errorUtil = inject(HttpErrorUtil);
 
   getClasses(): Observable<SchoolClass[]> {
-    return this.http.get<SchoolClass[]>(`${this.api}/turmas`).pipe(this.errorUtil.handleError('buscar turmas'));
+    return this.http
+      .get<SchoolClass[]>(`${this.api}/reference/turmas`)
+      .pipe(this.errorUtil.handleError('buscar turmas'));
   }
 }

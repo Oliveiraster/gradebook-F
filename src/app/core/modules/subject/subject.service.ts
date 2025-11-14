@@ -12,7 +12,9 @@ export class SubjectService {
   private readonly errorUtil = inject(HttpErrorUtil);
 
   getSubjects(): Observable<Subject[]> {
-    return this.http.get<Subject[]>(`${this.api}/disciplinas`).pipe(this.errorUtil.handleError('buscar disciplinas'));
+    return this.http
+      .get<Subject[]>(`${this.api}/reference/disciplinas`)
+      .pipe(this.errorUtil.handleError('buscar disciplinas'));
   }
 
   getAssessments(subjectId: number): Observable<Assessment[]> {
